@@ -24,14 +24,14 @@ npm install axios --save
 ```
 for this project.
 
-In this demoproject, we will only need to keep the 
+In this demoproject, under the demoproject/src/, we will only need to keep the 
 * App.css
 
 * App.js
 
 * index.js
 
-under the demoproject/src/
+ for our frontend development.
 To run locally, the default page for frontend is http://localhost:3001/
 
 
@@ -70,7 +70,7 @@ Run:
 for this program.
 
 To see the updates, you might need to run ```node index.js``` after your changes.
-To simply this process, we can make the following improvements:
+To simplify this process, we can make the following improvements:
 
 In the package.json: make change:
 
@@ -100,6 +100,8 @@ You might need to install mysql and MYSQLWorkbench on your local mahcine.
 
 
 # Stage two:
+For the details, please see the video. 
+After you finish stage two, the code should looks like: 
 frontend: 
 ```javascript
 
@@ -158,6 +160,8 @@ app.listen(3002, () => {
 ```
 
 # Stage3:
+For the details, please see the video. 
+After you finish stage three, the code should looks like: 
 
 Changes can be made in App.css for the better format:
 
