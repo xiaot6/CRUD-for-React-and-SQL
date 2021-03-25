@@ -254,6 +254,6 @@ app.listen(3002, () => {
 
 ```
 
-#stage4:
-
+# stage4:
+The final stage code can check the files. 
 
