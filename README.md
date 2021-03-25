@@ -1,5 +1,6 @@
 # CRUD-for-React-and-MYSQL
 
+# Stage 1
 This project is composed by two parts:The frontend and the backend.
 
 ## Frontend
@@ -19,7 +20,7 @@ npm start
 By doing this, the webpage will be open automatically. 
 Also, you may need to 
 ```
-npm install axios
+npm install axios --save
 ```
 for this project.
 
@@ -97,5 +98,162 @@ To to this, we use the MYSQLWorkbench to manage our dataset.
 You might need to install mysql and MYSQLWorkbench on your local mahcine. 
 
 
+
+# Stage two:
+frontend: 
+```javascript
+
+
+import './App.css';
+import React, {useState, useEffect} from "react";
+import Axios from 'axios';
+
+function App() {
+  return (
+  <div className="App">
+      <h1> CRUD APPLICATIONS</h1>
+
+      <div className="form">
+        <label> Movie Name:</label>
+        <input type="text" name="movieName" />
+        <label> Review:</label>
+        <input type="text" name="Review" />
+        
+        <button> Submit</button>
+
+        
+
+      </div>
+      
+  </div>
+  );
+}
+
+export default App;
+```
+
+backend:
+```javascript
+const express = require("express");
+const app = express();
+const mysql = require("mysql");
+
+var db = mysql.createConnection({
+    host:'localhost',
+    user: 'root',
+    password:'mypassword',
+    database:'411demo',
+})
+
+app.get('/', (require, response) => {
+    const sqlInsert = "INSERT INTO `movie_reviews` (`movieName`, `movieReview`) VALUES ('Spider2', 'good movie');";
+    db.query(sqlInsert, (err, result) => {
+        response.send("Hello world!!!");
+    })
+})
+
+app.listen(3002, () => {
+    console.log("running on port 3002");
+})
+```
+
+# Stage3:
+
+Changes can be made in App.css for the better format:
+
+frontend:
+```javascript
+
+import './App.css';
+import React, {useState, useEffect} from "react";
+import Axios from 'axios';
+
+function App() {
+  const [movieName, setMovieName] = useState('');
+  const [Review, setReview] = useState('');
+
+  const submitReview = () => { 
+    Axios.post('http://localhost:3002/api/insert', {
+      movieName: movieName,
+      movieReview: Review
+    }).then(() => {
+      alert('success insert')
+    })
+    
+  };
+
+
+  return (
+    <div className="App">
+      <h1> CRUD APPLICATIONS</h1>
+
+      <div className="form">
+        <label> Movie Name:</label>
+        <input type="text" name="movieName" onChange={(e) => {
+          setMovieName(e.target.value)
+        } }/>
+        <label> Review:</label>
+        <input type="text" name="Review" onChange={(e) => {
+          setReview(e.target.value)
+        }}/>
+        
+        <button onClick={submitReview}> Submit</button>
+
+ 
+        
+
+      </div>
+      
+    </div>
+  );
+}
+
+export default App;
+```
+
+backend:
+```javascript
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const mysql = require("mysql");
+const cors = require("cors");
+
+
+var db = mysql.createConnection({
+    host:'localhost',
+    user: 'root',
+    password:'mypassword',
+    database:'411demo',
+})
+
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+
+// app.get('/', (require, response) => {
+//     const sqlInsert = "INSERT INTO `movie_reviews` (`movieName`, `movieReview`) VALUES ('testMovie', 'cool movie!');";
+//     db.query(sqlInsert, (err, result) => {
+//         response.send("Hello world??");
+//     })
+// })
+
+app.post("/api/insert", (require, response) => {
+    const movieName = require.body.movieName;
+    const movieReview = require.body.movieReview;
+
+    const sqlInsert = "INSERT INTO `movie_reviews` (`movieName`, `movieReview`) VALUES (?,?)";
+    db.query(sqlInsert, [movieName, movieReview], (err, result) => {
+        console.log(error);
+    })
+});
+
+app.listen(3002, () => {
+    console.log("running on port 3002");
+})
+
+```
+
+#stage4:
 
 
