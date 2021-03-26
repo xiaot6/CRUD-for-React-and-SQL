@@ -261,3 +261,34 @@ app.listen(3002, () => {
 # stage4:
 The final stage code can check the files. 
 
+# stage5:
+deployment:
+
+You need to create one cloud sql database. You can follow this guideline to create it:
+https://www.youtube.com/watch?v=EQJK0tNW-g4&ab_channel=GoogleCloudTech
+
+After that, you need to replace the database we have in the backend/index.js with your new cloud sql database's information:
+
+To deploy the frontend on firebase, create one project on firebase:
+Then using the following commends:
+```
+using the following comments: 
+
+npm run build
+
+
+npm install -g firebase-tools
+
+
+
+firebase login
+
+firebase init
+
+Firebase deploy
+```
+
+
+
+
+
